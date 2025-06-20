@@ -12,6 +12,7 @@ import {
 import {
   ALIAS_VERSION,
   RESOLVED_VERSION_RANGE,
+  TEST_VERSION,
   VERSION_RANGE,
 } from './helpers/versions.test.js'
 
@@ -27,6 +28,16 @@ test('Resolves version ranges', async (t) => {
   t.is(version, RESOLVED_VERSION_RANGE)
 })
 
+test('Returns semantic versions directly without alias resolution', async (t) => {
+  const { filePath, envVariable, rawVersion, version } =
+    await runFixture('nvmrc')
+  t.is(filePath, join(FIXTURES_DIR, 'nvmrc', '.nvmrc'))
+  t.true(envVariable === undefined)
+  t.is(rawVersion, TEST_VERSION)
+  // Should be the same as rawVersion since it's semantic
+  t.is(version, TEST_VERSION)
+})
+
 test('Returns information about the resolution', async (t) => {
   const { filePath, envVariable, rawVersion, version } =
     await runFixture('version_range')
@@ -35,7 +46,39 @@ test('Returns information about the resolution', async (t) => {
   t.is(rawVersion, VERSION_RANGE)
   t.is(version, RESOLVED_VERSION_RANGE)
 })
+test('resolveVersion returns semantic versions directly', async (t) => {
+  const result = await preferredNodeVersion.__resolveVersion({
+    rawVersion: '18.17.0',
+    nodeVersionAliasOpts: {},
+    filePath: '/test/.nvmrc',
+    envVariable: undefined,
+  })
+  
+  t.deepEqual(result, {
+    filePath: '/test/.nvmrc',
+    envVariable: undefined,
+    rawVersion: '18.17.0',
+    version: '18.17.0',
+  })
+})
 
+test('resolveVersion handles non-semantic versions through alias resolution', async (t) => {
+  // This test would need the actual alias resolution to work
+  // since resolveVersion is not exported, we test it through preferredNodeVersion
+  const { version } = await runFixture('alias')
+  t.is(version, ALIAS_VERSION)
+})
+
+test('resolveVersion propagates errors from node-version-alias', async (t) => {
+  // Create a fixture with an invalid alias that would cause node-version-alias to throw
+  const error = await t.throwsAsync(
+    preferredNodeVersion({ 
+      cwd: join(FIXTURES_DIR, 'invalid_alias') 
+    })
+  )
+  
+  t.truthy(error)
+})
 test.serial('Returns an empty object if nothing was found', async (t) => {
   setEmptyHomeDir()
 
