@@ -1,5 +1,5 @@
 {
-  "name": "preferred-node-version",
+  "name": "wallaby-preferred-node-version",
   "version": "5.0.1",
   "type": "module",
   "exports": {
@@ -41,15 +41,15 @@
     "bash"
   ],
   "license": "Apache-2.0",
-  "homepage": "https://www.github.com/ehmicky/preferred-node-version",
+  "homepage": "https://www.github.com/smcenlly/wallaby-preferred-node-version",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ehmicky/preferred-node-version.git"
+    "url": "git+https://github.com/smcenlly/wallaby-preferred-node-version.git"
   },
   "bugs": {
-    "url": "https://github.com/ehmicky/preferred-node-version/issues"
+    "url": "https://github.com/smcenlly/wallaby-preferred-node-version/issues"
   },
-  "author": "ehmicky <ehmicky@gmail.com> (https://github.com/ehmicky)",
+  "author": "smcenlly <your-email@example.com> (https://github.com/smcenlly)",
   "directories": {
     "lib": "src"
   },

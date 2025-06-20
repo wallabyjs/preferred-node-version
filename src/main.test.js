@@ -2,6 +2,7 @@ import { join } from 'node:path'
 
 import test from 'ava'
 import isPlainObj from 'is-plain-obj'
+import preferredNodeVersion from 'preferred-node-version'
 
 import {
   FIXTURES_DIR,
@@ -16,7 +17,6 @@ import {
   VERSION_RANGE,
 } from './helpers/versions.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
 
 test('Resolves aliases', async (t) => {
   const { version } = await runFixture('alias')
@@ -53,7 +53,7 @@ test('resolveVersion returns semantic versions directly', async (t) => {
     filePath: '/test/.nvmrc',
     envVariable: undefined,
   })
-  
+
   t.deepEqual(result, {
     filePath: '/test/.nvmrc',
     envVariable: undefined,
@@ -72,11 +72,11 @@ test('resolveVersion handles non-semantic versions through alias resolution', as
 test('resolveVersion propagates errors from node-version-alias', async (t) => {
   // Create a fixture with an invalid alias that would cause node-version-alias to throw
   const error = await t.throwsAsync(
-    preferredNodeVersion({ 
-      cwd: join(FIXTURES_DIR, 'invalid_alias') 
-    })
+    preferredNodeVersion({
+      cwd: join(FIXTURES_DIR, 'invalid_alias'),
+    }),
   )
-  
+
   t.truthy(error)
 })
 test.serial('Returns an empty object if nothing was found', async (t) => {

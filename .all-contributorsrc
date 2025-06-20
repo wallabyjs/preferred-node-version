@@ -3,9 +3,7 @@
   "projectOwner": "ehmicky",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "files": [
-    "README.md"
-  ],
+  "files": ["README.md"],
   "imageSize": 100,
   "commit": true,
   "linkToUsage": false,
@@ -15,33 +13,21 @@
       "name": "ehmicky",
       "avatar_url": "https://avatars2.githubusercontent.com/u/8136211?v=4",
       "profile": "https://fosstodon.org/@ehmicky",
-      "contributions": [
-        "code",
-        "design",
-        "ideas",
-        "doc"
-      ]
+      "contributions": ["code", "design", "ideas", "doc"]
     },
     {
       "login": "AdrieanKhisbe",
       "name": "Adrien Becchis",
       "avatar_url": "https://avatars1.githubusercontent.com/u/2601132?v=4",
       "profile": "https://twitter.com/adrieankhisbe",
-      "contributions": [
-        "code",
-        "test",
-        "ideas"
-      ]
+      "contributions": ["code", "test", "ideas"]
     },
     {
       "login": "shuhrat",
       "name": "Шухрат Шадмонов",
       "avatar_url": "https://avatars.githubusercontent.com/u/104213?v=4",
       "profile": "https://github.com/shuhrat",
-      "contributions": [
-        "ideas",
-        "question"
-      ]
+      "contributions": ["ideas", "question"]
     }
   ],
   "contributorsPerLine": 7,
