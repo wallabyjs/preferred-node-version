@@ -23,17 +23,29 @@ const resolveVersion = async ({
   filePath,
   envVariable,
 }) => {
+  const sanitizedRawVersion = (
+    rawVersion.startsWith('v') ? rawVersion.slice(1) : rawVersion
+  ).trim()
+
   // Check if rawVersion is in major.minor.revision format (all numbers)
-  const isSemanticVersion = /^\d+\.\d+\.\d+$/u.test(rawVersion)
+  const isSemanticVersion = /^\d+\.\d+\.\d+$/u.test(sanitizedRawVersion)
 
   if (isSemanticVersion) {
-    return { filePath, envVariable, rawVersion, version: rawVersion }
+    return {
+      filePath,
+      envVariable,
+      rawVersion: sanitizedRawVersion,
+      version: sanitizedRawVersion,
+    }
   }
 
   try {
     const nodeVersionAlias = await getNodeVersionAlias()
-    const version = await nodeVersionAlias(rawVersion, nodeVersionAliasOpts)
-    return { filePath, envVariable, rawVersion, version }
+    const version = await nodeVersionAlias(
+      sanitizedRawVersion,
+      nodeVersionAliasOpts,
+    )
+    return { filePath, envVariable, rawVersion: sanitizedRawVersion, version }
   } catch (error) {
     throw getError(error, filePath, envVariable)
   }
