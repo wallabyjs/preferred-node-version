@@ -8,7 +8,7 @@ import {
   unsetHomeDir,
 } from './helpers/main.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 test('Validates versions in files', async (t) => {
   await t.throwsAsync(runFixture('invalid_version'), { message: /file/u })

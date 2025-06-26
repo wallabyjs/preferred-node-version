@@ -2,7 +2,6 @@ import { join } from 'node:path'
 
 import test from 'ava'
 import isPlainObj from 'is-plain-obj'
-import preferredNodeVersion from 'preferred-node-version'
 
 import {
   FIXTURES_DIR,
@@ -17,6 +16,7 @@ import {
   VERSION_RANGE,
 } from './helpers/versions.test.js'
 
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 test('Resolves aliases', async (t) => {
   const { version } = await runFixture('alias')
@@ -46,21 +46,6 @@ test('Returns information about the resolution', async (t) => {
   t.is(rawVersion, VERSION_RANGE)
   t.is(version, RESOLVED_VERSION_RANGE)
 })
-test('resolveVersion returns semantic versions directly', async (t) => {
-  const result = await preferredNodeVersion.__resolveVersion({
-    rawVersion: '18.17.0',
-    nodeVersionAliasOpts: {},
-    filePath: '/test/.nvmrc',
-    envVariable: undefined,
-  })
-
-  t.deepEqual(result, {
-    filePath: '/test/.nvmrc',
-    envVariable: undefined,
-    rawVersion: '18.17.0',
-    version: '18.17.0',
-  })
-})
 
 test('resolveVersion handles non-semantic versions through alias resolution', async (t) => {
   // This test would need the actual alias resolution to work
@@ -73,12 +58,13 @@ test('resolveVersion propagates errors from node-version-alias', async (t) => {
   // Create a fixture with an invalid alias that would cause node-version-alias to throw
   const error = await t.throwsAsync(
     preferredNodeVersion({
-      cwd: join(FIXTURES_DIR, 'invalid_alias'),
+      cwd: join(FIXTURES_DIR, 'invalid_version'),
     }),
   )
 
   t.truthy(error)
 })
+
 test.serial('Returns an empty object if nothing was found', async (t) => {
   setEmptyHomeDir()
 

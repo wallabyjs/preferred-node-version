@@ -9,7 +9,7 @@ import { TEST_VERSION } from './helpers/versions.test.js'
 
 import preferredNodeVersion, {
   NODE_VERSION_FILES,
-} from 'preferred-node-version'
+} from 'wallaby-preferred-node-version'
 
 each(
   [

@@ -6,7 +6,7 @@ import test from 'ava'
 import { FIXTURES_DIR, runFixture } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 test('Prioritize closer directories', async (t) => {
   const { version } = await runFixture('priority/subdir')

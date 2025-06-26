@@ -4,7 +4,7 @@ import { each } from 'test-each'
 import { FIXTURES_DIR, FIXTURES_DIR_URL } from './helpers/main.test.js'
 import { RESOLVED_VERSION_RANGE } from './helpers/versions.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 each(
   [

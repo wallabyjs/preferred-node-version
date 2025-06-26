@@ -6,7 +6,7 @@ import { each } from 'test-each'
 import { setEmptyHomeDir, unsetHomeDir } from './helpers/main.test.js'
 import { TEST_VERSION } from './helpers/versions.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 each(
   [

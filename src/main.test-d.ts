@@ -5,7 +5,7 @@ import preferredNodeVersion, {
   type Options,
   type PreferredNodeVersion,
   type SemverVersion,
-} from 'preferred-node-version'
+} from 'wallaby-preferred-node-version'
 
 const result = await preferredNodeVersion()
 

@@ -4,7 +4,7 @@ import { each } from 'test-each'
 import { runFixture, setHomeDir } from './helpers/main.test.js'
 import { HOME_TEST_VERSION, TEST_VERSION } from './helpers/versions.test.js'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 const HOME_DIR = setHomeDir()
 

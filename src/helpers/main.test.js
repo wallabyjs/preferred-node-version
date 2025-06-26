@@ -1,7 +1,7 @@
 import { env } from 'node:process'
 import { fileURLToPath } from 'node:url'
 
-import preferredNodeVersion from 'preferred-node-version'
+import preferredNodeVersion from 'wallaby-preferred-node-version'
 
 export const FIXTURES_DIR_URL = new URL('../fixtures/', import.meta.url)
 export const FIXTURES_DIR = fileURLToPath(FIXTURES_DIR_URL)
