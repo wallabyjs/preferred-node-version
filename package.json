@@ -1,6 +1,6 @@
 {
   "name": "wallaby-preferred-node-version",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "type": "module",
   "exports": {
     "types": "./build/src/main.d.ts",
@@ -55,7 +55,6 @@
   },
   "dependencies": {
     "is-plain-obj": "^4.1.0",
-    "node-version-alias": "^5.0.1",
     "p-locate": "^6.0.0",
     "path-type": "^6.0.0"
   },
