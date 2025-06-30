@@ -1,10 +1,3 @@
-import type {
-  Options as NodeVersionAliasOptions,
-  SemverVersion,
-} from 'node-version-alias'
-
-export type { SemverVersion }
-
 export interface Options {
   /**
    * Start looking for a Node.js version file from this directory.
@@ -29,41 +22,9 @@ export interface Options {
    * @default []
    */
   files?: string[]
-
-  /**
-   * Base URL.
-   * Can be customized (for example `https://npmmirror.com/mirrors/node`).
-   *
-   * The following environment variables can also be used: `NODE_MIRROR`,
-   * `NVM_NODEJS_ORG_MIRROR`, `N_NODE_MIRROR` or `NODIST_NODE_MIRROR`.
-   *
-   * @default 'https://nodejs.org/dist'
-   */
-  mirror?: NodeVersionAliasOptions['mirror']
-
-  /**
-   * Cancels when the signal is aborted.
-   */
-  signal?: NodeVersionAliasOptions['signal']
-
-  /**
-   * The list of available Node.js versions is cached for one hour by default.
-   * If the `fetch` option is:
-   *  - `true`: the cache will not be used
-   *  - `false`: the cache will be used even if it's older than one hour
-   *
-   * @default `undefined`
-   */
-  fetch?: NodeVersionAliasOptions['fetch']
 }
 
 export type PreferredNodeVersion = Partial<{
-  /**
-   * Full Node.js version. For example `12.16.2`.
-   * `undefined` if no preferred Node.js version was found.
-   */
-  version: SemverVersion
-
   /**
    * Node.js version as specified in the Node.js version file.
    * This might include aliases or version ranges.

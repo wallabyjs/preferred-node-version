@@ -1,10 +1,9 @@
-import { expectAssignable, expectNotAssignable, expectType } from 'tsd'
+import { expectAssignable, expectType } from 'tsd'
 
 import preferredNodeVersion, {
   NODE_VERSION_FILES,
   type Options,
   type PreferredNodeVersion,
-  type SemverVersion,
 } from 'wallaby-preferred-node-version'
 
 const result = await preferredNodeVersion()
@@ -34,35 +33,15 @@ await preferredNodeVersion({ files: 'path' })
 // @ts-expect-error
 await preferredNodeVersion({ files: [true] })
 
-await preferredNodeVersion({ mirror: 'https://example.com' })
-expectAssignable<Options>({ mirror: 'https://example.com' })
 // @ts-expect-error
 await preferredNodeVersion({ mirror: true })
 
-await preferredNodeVersion({ signal: AbortSignal.abort() })
-expectAssignable<Options>({ signal: AbortSignal.abort() })
 // @ts-expect-error
 await preferredNodeVersion({ signal: 'signal' })
 
-await preferredNodeVersion({ fetch: true })
-await preferredNodeVersion({ fetch: undefined })
-expectAssignable<Options>({ fetch: true })
 // @ts-expect-error
 await preferredNodeVersion({ fetch: 'true' })
 
-expectAssignable<SemverVersion>('1.2.3')
-expectAssignable<SemverVersion>('0.0.1')
-expectAssignable<SemverVersion>('10.10.10')
-expectAssignable<SemverVersion>('1.2.3-beta')
-expectNotAssignable<SemverVersion>('1.2.a')
-expectNotAssignable<SemverVersion>('1.2')
-expectNotAssignable<SemverVersion>('1')
-
 expectType<PreferredNodeVersion>(result)
-const { version, rawVersion, filePath, envVariable } = result
-expectType<SemverVersion | undefined>(version)
-expectType<string | undefined>(rawVersion)
-expectType<string | undefined>(filePath)
-expectType<string | undefined>(envVariable)
 
 expectType<string[]>(NODE_VERSION_FILES)
